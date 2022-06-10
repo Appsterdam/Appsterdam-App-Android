@@ -1,21 +1,24 @@
 package rs.appsterdam.appsterdam
 
 import android.os.Bundle
+import android.widget.ScrollView
 import android.widget.TableLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import rs.appsterdam.appsterdam.ui.theme.AppsterdamPrimary
 
 import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
 
@@ -30,7 +33,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     tabs()
-                    Greeting("Android")
                 }
             }
         }
@@ -44,10 +46,9 @@ fun Greeting(name: String) {
 
 @Composable
 fun tabs() {
-    var tabIndex: Int = 0
-//    var tabIndex by remember {
-//        mutableStateOf(0)
-//    }
+    var tabIndex by remember {
+        mutableStateOf(0)
+    }
 
     val tabTitles = listOf(
         "Home",
@@ -57,18 +58,36 @@ fun tabs() {
     )
 
     Column {
-        TabRow(selectedTabIndex = tabIndex) {
-            tabTitles.forEachIndexed { index, title ->
-                Tab(selected = tabIndex == index,
-                    onClick = { tabIndex = index },
-                    text = { Text(text = title) })
+        Column(modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .weight(weight=1f, fill = true)) {
+            when (tabTitles[tabIndex]) {
+                "Home" -> HomeView().layout()
+                "Events" -> EventsView().layout()
+                "Jobs" -> JobsView().layout()
+                "About" -> AboutView().layout()
             }
         }
-        when (tabIndex) {
-            0 -> Text("Home content")
-            1 -> Text("Events content")
-            2 -> Text("Jobs content")
-            3 -> Text(text = "About content")
+
+        TabRow(selectedTabIndex = tabIndex,
+            backgroundColor = Color.White,
+            contentColor = AppsterdamPrimary
+        ) {
+            tabTitles.forEachIndexed { index, title ->
+                Tab(
+                    selected = tabIndex == index,
+                    onClick = {
+                        println("clicked on $title, index: $index")
+                        tabIndex = index
+                              },
+                    icon = {
+                           Text("Icon")
+                    },
+                    text = {
+                        Text(text = title)
+                    }
+                )
+            }
         }
     }
 }
@@ -77,6 +96,6 @@ fun tabs() {
 @Composable
 fun DefaultPreview() {
     AppsterdamTheme {
-        Greeting("Android")
+        tabs()
     }
 }
