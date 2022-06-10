@@ -18,9 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import rs.appsterdam.appsterdam.ui.theme.AppsterdamPrimary
-
-import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
+import rs.appsterdam.appsterdam.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,8 +68,11 @@ fun tabs() {
         }
 
         TabRow(selectedTabIndex = tabIndex,
-            backgroundColor = Color.White,
-            contentColor = AppsterdamPrimary
+            contentColor = AppsterdamPrimary,
+            // If no backgroundColor = Unspecified,
+            // the background color of the tab row will be
+            // PURPLE
+            backgroundColor = Color.Unspecified,
         ) {
             tabTitles.forEachIndexed { index, title ->
                 Tab(
