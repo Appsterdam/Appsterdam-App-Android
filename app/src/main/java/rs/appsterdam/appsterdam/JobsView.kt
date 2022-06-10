@@ -16,12 +16,7 @@ class JobsView {
 
     @Composable
     fun layout() {
-        Column(
-            modifier = Modifier
-                .width(100.dp).fillMaxHeight()
-//                .fillMaxWidth(),
-//            Arrangement.SpaceBetween
-        ) {
+        Column() {
             Text("JobsView")
             Spacer(Modifier.height(50.dp))
             Text("JobsView")

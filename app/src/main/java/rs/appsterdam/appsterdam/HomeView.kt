@@ -1,5 +1,6 @@
 package rs.appsterdam.appsterdam
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -12,7 +13,10 @@ class HomeView {
 
     @Composable
     fun layout() {
-        Text("HomeView Contents")
+        Column() {
+            Text("HomeView Contents")
+            Text("HomeView Contents2")
+        }
         println("HomeView layout")
     }
 
