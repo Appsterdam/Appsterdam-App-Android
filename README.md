@@ -10,7 +10,9 @@ This is the repo for the official Appsterdam app.
 
 [Appsterdam Website](https://appsterdam.rs)
 
-[Appsterdam APP](https://apps.apple.com/us/app/appsterdam/id1608532704) / [Source Code](https://github.com/wdg/Appsterdam-App)
+[Appsterdam APP](https://apps.apple.com/us/app/appsterdam/id1608532704) (iOS) / [Source Code](https://github.com/wdg/Appsterdam-App)
+
+[Appsterdam APP](#) (Android) / [Source Code](https://github.com/wdg/Appsterdam-App) (Android)
 
 [Appsterdam Meetup](https://www.meetup.com/appsterdam/) Join our events!
 
