@@ -69,7 +69,7 @@ fun tabs() {
 
         TabRow(selectedTabIndex = tabIndex,
             contentColor = MaterialTheme.colorScheme.primary,
-            backgroundColor = MaterialTheme.colorScheme.primary
+            backgroundColor = MaterialTheme.colorScheme.onSecondary
         ) {
             tabTitles.forEachIndexed { index, title ->
                 Tab(
