@@ -72,7 +72,7 @@ fun tabs() {
             // If no backgroundColor = Unspecified,
             // the background color of the tab row will be
             // PURPLE
-            backgroundColor = Color.Unspecified,
+//            backgroundColor = Color.Unspecified,
         ) {
             tabTitles.forEachIndexed { index, title ->
                 Tab(
