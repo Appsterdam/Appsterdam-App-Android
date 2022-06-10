@@ -1,6 +1,7 @@
 package rs.appsterdam.appsterdam
 
 import android.os.Bundle
+import android.widget.TableLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello From $name!")
 }
 
 @Preview(showBackground = true)
