@@ -68,11 +68,8 @@ fun tabs() {
         }
 
         TabRow(selectedTabIndex = tabIndex,
-            contentColor = AppsterdamPrimary,
-            // If no backgroundColor = Unspecified,
-            // the background color of the tab row will be
-            // PURPLE
-//            backgroundColor = Color.Unspecified,
+            contentColor = MaterialTheme.colorScheme.primary,
+            backgroundColor = MaterialTheme.colorScheme.primary
         ) {
             tabTitles.forEachIndexed { index, title ->
                 Tab(
