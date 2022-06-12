@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam
+package rs.appsterdam.app
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
@@ -10,11 +10,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import dev.jeziellago.compose.markdowntext.MarkdownText
-import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
+import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import java.net.URL
 import org.json.JSONObject
 import kotlinx.coroutines.*
-import rs.appsterdam.appsterdam.models.Appsterdamer
+import rs.appsterdam.app.models.Appsterdamer
 import kotlinx.coroutines.flow.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState

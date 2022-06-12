@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam
+package rs.appsterdam.app
 
 import org.junit.Test
 

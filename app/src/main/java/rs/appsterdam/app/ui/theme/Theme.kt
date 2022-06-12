@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam.ui.theme
+package rs.appsterdam.app.ui.theme
 
 import android.app.Activity
 import android.os.Build

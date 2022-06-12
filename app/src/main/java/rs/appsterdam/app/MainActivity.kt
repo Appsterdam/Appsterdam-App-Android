@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam
+package rs.appsterdam.app
 
 import android.os.Bundle
 import android.widget.ScrollView
@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import rs.appsterdam.appsterdam.ui.theme.*
+import rs.appsterdam.app.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

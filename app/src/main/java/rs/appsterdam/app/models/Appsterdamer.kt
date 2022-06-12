@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam.models
+package rs.appsterdam.app.models
 
 import com.google.gson.annotations.SerializedName
 

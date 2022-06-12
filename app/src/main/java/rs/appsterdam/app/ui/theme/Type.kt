@@ -1,4 +1,4 @@
-package rs.appsterdam.appsterdam.ui.theme
+package rs.appsterdam.app.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

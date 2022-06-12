@@ -1,26 +1,26 @@
-package rs.appsterdam.appsterdam
+package rs.appsterdam.app
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
+import rs.appsterdam.app.ui.theme.AppsterdamTheme
 
-class AboutView {
+class EventsView {
     init {
-        println("AboutView")
+        println("EventsView")
     }
 
     @Composable
     fun layout() {
-        Text("AboutView Contents")
-        println("AboutView layout")
+        Text("EventsView Contents")
+        println("EventsView layout")
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun AboutViewPreview() {
+fun EventsViewPreview() {
     AppsterdamTheme {
-        AboutView().layout()
+        EventsView().layout()
     }
 }
