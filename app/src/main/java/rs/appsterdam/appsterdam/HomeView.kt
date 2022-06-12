@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.gson.Gson
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
 import java.net.URL
 import java.io.File
 import org.json.JSONObject
 import kotlinx.coroutines.*
+import rs.appsterdam.appsterdam.models.Appsterdamer
 
 class HomeView {
     init {
@@ -17,12 +19,14 @@ class HomeView {
         GlobalScope.launch(Dispatchers.IO) {
 
             val str = URL("https://appsterdam.rs/api/app.json").readText()
-          val json = JSONObject(str)
+            val json = JSONObject(str)
 
-          val home = json.getString("home")
+            val gson = Gson()
+            var homeValue = gson.fromJson(json.toString(), Appsterdamer::class.java)
+
             // How to get the home var in MarkdownText
             // or update MarkdownText
-          println("Home=" + home)
+            println("Home=" + homeValue)
         }
     }
 
