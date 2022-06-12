@@ -1,21 +1,31 @@
 package rs.appsterdam.appsterdam
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import rs.appsterdam.appsterdam.ui.theme.AppsterdamTheme
 import java.net.URL
-import java.io.File
 import org.json.JSONObject
 import kotlinx.coroutines.*
 import rs.appsterdam.appsterdam.models.Appsterdamer
+import kotlinx.coroutines.flow.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.unit.sp
+import java.lang.reflect.Modifier
 
 class HomeView {
+    private var markdown = MutableLiveData("Loading...")
+
     init {
-        println("HomeView")
+        println("APP:HomeView")
         GlobalScope.launch(Dispatchers.IO) {
 
             val str = URL("https://appsterdam.rs/api/app.json").readText()
@@ -26,29 +36,29 @@ class HomeView {
 
             // How to get the home var in MarkdownText
             // or update MarkdownText
-            println("Home=" + homeValue)
+            println("APP:Home=" + homeValue)
+
+            GlobalScope.launch(Dispatchers.Main) {
+                markdown.value = homeValue.home.toString()
+                println("APP:UV=" + markdown.value)
+            }
         }
     }
 
     @Composable
     fun layout() {
-        Column() {
-            Text("HomeView Contents")
-            Text("HomeView Contents2")
+        val mdState = markdown.observeAsState()
 
-            MarkdownText("""
-                # Test markdown
-                This is a test
-                and this should work
+        // modifier: Modifier = Modifier
+        Column {
+            Text("APPSTERDAM LOGO")
 
-                # Sample
-                * Markdown
-                * [Link](https://example.com)
-                <a href="https://www.google.com/">Google</a>
-                """.trimIndent()
+            MarkdownText(
+                mdState.value.toString(),
+                fontSize = 21.sp,
             )
         }
-        println("HomeView layout")
+        println("APP:HomeView layout")
     }
 }
 
