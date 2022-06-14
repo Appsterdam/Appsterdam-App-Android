@@ -1,8 +1,13 @@
 package rs.appsterdam.app
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +26,7 @@ import org.json.JSONObject
 import rs.appsterdam.app.models.Appsterdamer
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import java.net.URL
+import androidx.compose.material.Card as Card
 
 class AboutView {
     private var aboutText = MutableLiveData("Loading...")
@@ -65,13 +71,30 @@ class AboutView {
         // More organizers
         // - PPL
 
-        for (i in 0..10) {
+        for (i in 0..3) {
             Column {
                 Text("Section $i")
                 // Horizontal list of people?
-                Row(horizontalArrangement = Arrangement.SpaceBetween) {
-                    for (i2 in 0..5) {
-                        Text("Person $i2")
+                Box(modifier = Modifier.fillMaxSize()) {
+                    // BowWithConstraints will provide the maxWidth used below
+                    BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
+                        // LazyRow to display your items horizontally
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState())
+                        ) {
+                            for (i2 in 0..5) {
+                                Card(
+                                    modifier = Modifier
+                                        .height(100.dp)
+                                        .width(100.dp)
+                                        .padding(16.dp)
+                                ) {
+                                    Text("Person $i2")
+                                }
+                            }
+                        }
                     }
                 }
             }
