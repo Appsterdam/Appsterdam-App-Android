@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.*
 
 class JobsView {
     init {
-        println("JobsView")
+        println("AAPP: JobsView")
     }
 
     @Composable
@@ -20,7 +20,7 @@ class JobsView {
             Text("JobsView")
             Spacer(Modifier.height(50.dp))
             Text("JobsView")
-            println("JobsView layout")
+            println("AAPP: JobsView layout")
         }
     }
 

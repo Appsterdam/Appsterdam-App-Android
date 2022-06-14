@@ -58,7 +58,7 @@ fun tabs() {
     Column {
         Column(modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .weight(weight=1f, fill = true)) {
+            .weight(weight = 1f, fill = true)) {
             when (tabTitles[tabIndex]) {
                 "Home" -> HomeView().layout()
                 "Events" -> EventsView().layout()

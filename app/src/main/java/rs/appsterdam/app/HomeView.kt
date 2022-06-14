@@ -25,7 +25,7 @@ class HomeView {
     private var markdown = MutableLiveData("Loading...")
 
     init {
-        println("APP:HomeView")
+        println("AAPP: HomeView")
         GlobalScope.launch(Dispatchers.IO) {
 
             val str = URL("https://appsterdam.rs/api/app.json").readText()
@@ -40,25 +40,27 @@ class HomeView {
 
             GlobalScope.launch(Dispatchers.Main) {
                 markdown.value = homeValue.home.toString()
-                println("APP:UV=" + markdown.value)
+                println("AAPP: UV=" + markdown.value)
             }
         }
     }
 
     @Composable
     fun layout() {
+        // Make the markdown
         val mdState = markdown.observeAsState()
 
-        // modifier: Modifier = Modifier
         Column {
             Text("APPSTERDAM LOGO")
 
             MarkdownText(
-                mdState.value.toString(),
-                fontSize = 21.sp,
+                mdState.value.toString()
+                        // Markdown editor ignores one line break, so we need 2
+                    .replace("\n", "\n\n"),
+                fontSize = 18.sp,
             )
         }
-        println("APP:HomeView layout")
+        println("AAPP: HomeView layout")
     }
 }
 
