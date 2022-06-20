@@ -10,8 +10,8 @@ android {
         applicationId "rs.appsterdam.app"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 3 // Build number
+        versionName "1.0" // Version number
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
