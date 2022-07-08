@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    tabs()
+                    TabView()
                 }
             }
         }
@@ -35,12 +35,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello From $name!")
-}
-
-@Composable
-fun tabs() {
+fun TabView() {
     var tabIndex by remember {
         mutableStateOf(0)
     }
@@ -57,10 +52,10 @@ fun tabs() {
             .verticalScroll(rememberScrollState())
             .weight(weight = 1f, fill = true)) {
             when (tabTitles[tabIndex]) {
-                "Home" -> HomeView().layout()
-                "Events" -> EventsView().layout()
-                "Jobs" -> JobsView().layout()
-                "About" -> AboutView().layout()
+                "Home" -> HomeView().Layout()
+                "Events" -> EventsView().Layout()
+                "Jobs" -> JobsView().Layout()
+                "About" -> AboutView().Layout()
             }
         }
 
@@ -91,6 +86,6 @@ fun tabs() {
 @Composable
 fun DefaultPreview() {
     AppsterdamTheme {
-        tabs()
+        TabView()
     }
 }
