@@ -3,11 +3,11 @@ package rs.appsterdam.app.models
 import com.google.gson.annotations.SerializedName
 
 
-data class People (
+data class Team (
 
     @SerializedName("team")
-    var team: String? = null,
+    var teamName: String? = null,
     @SerializedName("members")
-    var members: ArrayList<Members> = arrayListOf()
+    var members: ArrayList<Member> = arrayListOf()
 
 )

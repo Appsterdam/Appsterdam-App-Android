@@ -3,7 +3,7 @@ package rs.appsterdam.app.models
 import com.google.gson.annotations.SerializedName
 
 
-data class Members (
+data class Member (
     @SerializedName("name")
     var name: String? = null,
     @SerializedName("picture")
