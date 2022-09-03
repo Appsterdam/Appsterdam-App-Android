@@ -19,6 +19,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import rs.appsterdam.app.di.viewModelModule
+import rs.appsterdam.app.ui.screens.EventsView
+import rs.appsterdam.app.ui.screens.JobsView
+import rs.appsterdam.app.ui.screens.about.AboutView
 import rs.appsterdam.app.ui.screens.home.HomeView
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 

@@ -6,5 +6,5 @@ data class Appsterdamer (
     @SerializedName("home")
     var home: String? = null,
     @SerializedName("people")
-    var people: ArrayList<People> = arrayListOf()
+    var teams: ArrayList<Team> = arrayListOf()
 )

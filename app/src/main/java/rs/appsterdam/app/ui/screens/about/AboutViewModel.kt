@@ -1,4 +1,4 @@
-package rs.appsterdam.app.ui.screens.home
+package rs.appsterdam.app.ui.screens.about
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,23 +10,24 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import rs.appsterdam.app.models.Appsterdamer
+import rs.appsterdam.app.models.Team
 import java.net.URL
 
-class HomeViewModel : ViewModel() {
+class AboutViewModel : ViewModel() {
 
     sealed class State {
         object Loading : State()
-        data class Success(val markdown: String) : State()
+        data class Success(val teams: List<Team>) : State()
     }
 
     val state = MutableStateFlow<State>(State.Loading)
 
     init {
-        loadHomeContent()
+        loadAboutContent()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    private fun loadHomeContent() = viewModelScope.launch {
+    private fun loadAboutContent() = viewModelScope.launch {
         state.value = State.Loading
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -34,13 +35,13 @@ class HomeViewModel : ViewModel() {
             val json = JSONObject(str)
 
             val gson = Gson()
-            val homeValue = gson.fromJson(json.toString(), Appsterdamer::class.java)
+            val aboutValue = gson.fromJson(json.toString(), Appsterdamer::class.java)
 
-            println("APP:Home=$homeValue")
+            println("APP:About=${aboutValue.teams}")
+
             GlobalScope.launch(Dispatchers.Main) {
-                state.value = State.Success(homeValue.home.toString())
+                state.value = State.Success(aboutValue.teams)
             }
         }
-
     }
 }
