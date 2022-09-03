@@ -1,8 +1,10 @@
-package rs.appsterdam.app
+package rs.appsterdam.app.ui.screens
 
 import android.content.res.Resources
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material3.Button
@@ -22,6 +24,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import rs.appsterdam.app.BuildConfig
+import rs.appsterdam.app.R
 import rs.appsterdam.app.models.Appsterdamer
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import java.net.URL
@@ -94,9 +98,7 @@ class AboutView {
             // - PPL
 
             for (i in 0..3) {
-                Column(modifier = Modifier
-                    .height(160.dp)
-                ) {
+                Column(modifier = Modifier.height(160.dp)) {
                     Text("TEAM $i")
                     // Horizontal list of people?
                     Box(modifier = Modifier.fillMaxSize()) {
@@ -188,7 +190,8 @@ class AboutView {
 
     @Composable
     fun CenteredText(text: String) {
-        Text(text,
+        Text(
+            text,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
         )
