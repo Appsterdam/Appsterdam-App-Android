@@ -5,21 +5,31 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.glide.GlideImage
 import org.koin.androidx.compose.getViewModel
 import rs.appsterdam.app.BuildConfig
 import rs.appsterdam.app.R
@@ -166,15 +176,20 @@ class AboutView {
 
     @Composable
     fun MemberComposable(member: Member) {
-        Card(
-            modifier = Modifier
-                .height(150.dp)
-                .width(150.dp)
-                .padding(10.dp)
-        ) {
+        Card {
             Column {
-                Text("IMAGE") // Can set using member.picture
-                Text("Person ${member.name}")
+                GlideImage(
+                    imageModel = member.picture,
+                    contentScale = ContentScale.Crop,
+                    placeHolder = Icons.Rounded.Person,
+                    error = Icons.Rounded.Person,
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(150.dp)
+                        .padding(10.dp)
+                        .clip(CircleShape)
+                    )
+                Text("${member.name}")
             }
         }
     }
