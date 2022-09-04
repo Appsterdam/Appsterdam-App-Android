@@ -2,16 +2,15 @@ package rs.appsterdam.app.ui.screens.about
 
 import android.content.res.Resources
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -20,11 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +34,7 @@ import rs.appsterdam.app.R
 import rs.appsterdam.app.models.Member
 import rs.appsterdam.app.models.Team
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
+import rs.appsterdam.app.ui.theme.BackgroundSecondary
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
 class AboutView {
@@ -144,7 +143,11 @@ class AboutView {
     }
 
     @Composable
-    fun AboutTeamContent(teams: List<Team>) {
+    fun AboutTeamContent(teams: List<Team>) = Column(
+        modifier = Modifier
+            .background(BackgroundSecondary, RoundedCornerShape(12.dp))
+            .padding(vertical = 8.dp)
+    ) {
         teams.forEach { team ->
             TeamComposable(team)
         }
@@ -152,8 +155,7 @@ class AboutView {
 
     @Composable
     fun TeamComposable(team: Team) = Column(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Text("${team.teamName}")
         // Horizontal list of people?
@@ -167,7 +169,7 @@ class AboutView {
                         .horizontalScroll(rememberScrollState())
                 ) {
                     team.members.forEach { member ->
-                        MemberComposable(member)
+                        MemberCard(member)
                     }
                 }
             }
@@ -175,36 +177,25 @@ class AboutView {
     }
 
     @Composable
-    fun MemberComposable(member: Member) {
-        Card {
-            Column {
-                GlideImage(
-                    imageModel = member.picture,
-                    contentScale = ContentScale.Crop,
-                    placeHolder = Icons.Rounded.Person,
-                    error = Icons.Rounded.Person,
-                    modifier = Modifier
-                        .height(150.dp)
-                        .width(150.dp)
-                        .padding(10.dp)
-                        .clip(CircleShape)
-                    )
-                Text("${member.name}")
-            }
-        }
+    fun MemberCard(member: Member) = Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(horizontal = 4.dp)
+    ) {
+        GlideImage(
+            imageModel = member.picture,
+            contentScale = ContentScale.Crop,
+            placeHolder = Icons.Rounded.Person,
+            error = Icons.Rounded.Person,
+            modifier = Modifier
+                .height(140.dp)
+                .width(140.dp)
+                .padding(10.dp)
+                .clip(CircleShape)
+        )
+        Text("${member.name}")
+        Text("${member.function}")
     }
 }
-
-//    @Composable
-//    fun toast(text: String) {
-//        val context = LocalContext.current
-//
-//        Toast.makeText(
-//            context,
-//            text,
-//            Toast.LENGTH_SHORT
-//        ).show()
-//    }
 
 private fun openURL(context: UriHandler, url: String) {
     context.openUri(url)
