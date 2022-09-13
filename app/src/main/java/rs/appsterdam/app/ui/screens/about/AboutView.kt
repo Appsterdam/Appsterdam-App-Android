@@ -40,14 +40,17 @@ import rs.appsterdam.app.utils.collectAsStateRepeatedly
 class AboutView {
 
     @Composable
-    fun Layout() {
+    fun Layout(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
         val viewModel = getViewModel<AboutViewModel>()
         val state by viewModel.state.collectAsStateRepeatedly()
-        AboutContent(state = state)
+        AboutContent(state = state, showBottomSheet = showBottomSheet)
     }
 
     @Composable
-    fun AboutContent(state: AboutViewModel.State) = Column {
+    fun AboutContent(
+        state: AboutViewModel.State,
+        showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit
+    ) = Column {
         val uriHandler = LocalUriHandler.current
         val spacing = 10.dp
 
@@ -81,6 +84,15 @@ class AboutView {
                 .padding(horizontal = 8.dp),
             textAlign = TextAlign.Right
         )
+        ColouredButton(
+            onClick = {
+                showBottomSheet { onClose ->
+                    MemberDescriptionSheet(onClose)
+                }
+            },
+        ) {
+            CenteredText("Open sheet")
+        }
         Spacer(Modifier.height(spacing * 2))
         Text(
             "Appsterdam Team",
@@ -242,6 +254,6 @@ fun ColouredButton(
 @Composable
 fun AboutViewPreview() {
     AppsterdamTheme {
-        AboutView().Layout()
+        AboutView().Layout {}
     }
 }
