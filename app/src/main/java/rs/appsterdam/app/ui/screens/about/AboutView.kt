@@ -1,10 +1,7 @@
 package rs.appsterdam.app.ui.screens.about
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
@@ -37,19 +34,18 @@ import rs.appsterdam.app.ui.theme.BackgroundSecondary
 import rs.appsterdam.app.ui.theme.Typography
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
-class AboutView {
+class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
 
     @Composable
-    fun Layout(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
+    fun Layout() {
         val viewModel = getViewModel<AboutViewModel>()
         val state by viewModel.state.collectAsStateRepeatedly()
-        AboutContent(state = state, showBottomSheet = showBottomSheet)
+        AboutContent(state = state)
     }
 
     @Composable
     fun AboutContent(
-        state: AboutViewModel.State,
-        showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit
+        state: AboutViewModel.State
     ) = Column {
         val uriHandler = LocalUriHandler.current
         val spacing = 10.dp
@@ -84,15 +80,6 @@ class AboutView {
                 .padding(horizontal = 8.dp),
             textAlign = TextAlign.Right
         )
-        ColouredButton(
-            onClick = {
-                showBottomSheet { onClose ->
-                    MemberDescriptionSheet(onClose)
-                }
-            },
-        ) {
-            CenteredText("Open sheet")
-        }
         Spacer(Modifier.height(spacing * 2))
         Text(
             "Appsterdam Team",
@@ -201,7 +188,13 @@ class AboutView {
     @Composable
     fun MemberCard(member: Member) = Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = 4.dp)
+        modifier = Modifier
+            .padding(horizontal = 4.dp)
+            .clickable {
+                showBottomSheet { onClose ->
+                    MemberDescriptionSheet(member, onClose)
+                }
+            }
     ) {
         GlideImage(
             imageModel = member.picture,
@@ -254,6 +247,6 @@ fun ColouredButton(
 @Composable
 fun AboutViewPreview() {
     AppsterdamTheme {
-        AboutView().Layout {}
+        AboutView {}.Layout()
     }
 }

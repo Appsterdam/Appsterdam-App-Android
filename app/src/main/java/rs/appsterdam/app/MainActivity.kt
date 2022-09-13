@@ -81,7 +81,7 @@ fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) 
                 "Home" -> HomeView().Layout()
                 "Events" -> EventsView().Layout()
                 "Jobs" -> JobsView().Layout()
-                "About" -> AboutView().Layout(showBottomSheet)
+                "About" -> AboutView(showBottomSheet).Layout()
             }
         }
 
