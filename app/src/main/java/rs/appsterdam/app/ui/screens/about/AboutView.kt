@@ -1,10 +1,7 @@
 package rs.appsterdam.app.ui.screens.about
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
@@ -37,7 +34,7 @@ import rs.appsterdam.app.ui.theme.BackgroundSecondary
 import rs.appsterdam.app.ui.theme.Typography
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
-class AboutView {
+class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
 
     @Composable
     fun Layout() {
@@ -47,7 +44,9 @@ class AboutView {
     }
 
     @Composable
-    fun AboutContent(state: AboutViewModel.State) = Column {
+    fun AboutContent(
+        state: AboutViewModel.State
+    ) = Column {
         val uriHandler = LocalUriHandler.current
         val spacing = 10.dp
 
@@ -187,23 +186,33 @@ class AboutView {
     }
 
     @Composable
-    fun MemberCard(member: Member) = Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = 4.dp)
-    ) {
-        GlideImage(
-            imageModel = member.picture,
-            contentScale = ContentScale.Crop,
-            placeHolder = Icons.Rounded.Person,
-            error = Icons.Rounded.Person,
+    fun MemberCard(member: Member) {
+        val uriHandler = LocalUriHandler.current
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .height(140.dp)
-                .width(140.dp)
-                .padding(10.dp)
-                .clip(CircleShape)
-        )
-        Text("${member.name}", style = Typography.bodyLarge.copy(color = AppsterdamPrimary))
-        Text("${member.function}", style = Typography.labelSmall)
+                .padding(horizontal = 4.dp)
+                .clickable {
+                    showBottomSheet { onClose ->
+                        MemberDescriptionSheet(member, onClose) { url ->
+                            openURL(uriHandler, url)
+                        }
+                    }
+                }
+        ) {
+            GlideImage(
+                imageModel = member.picture,
+                contentScale = ContentScale.Crop,
+                placeHolder = Icons.Rounded.Person,
+                error = Icons.Rounded.Person,
+                modifier = Modifier
+                    .size(140.dp)
+                    .padding(10.dp)
+                    .clip(CircleShape)
+            )
+            Text("${member.name}", style = Typography.bodyLarge.copy(color = AppsterdamPrimary))
+            Text("${member.function}", style = Typography.labelSmall)
+        }
     }
 }
 
@@ -242,6 +251,6 @@ fun ColouredButton(
 @Composable
 fun AboutViewPreview() {
     AppsterdamTheme {
-        AboutView().Layout()
+        AboutView {}.Layout()
     }
 }

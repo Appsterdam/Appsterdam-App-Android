@@ -24,6 +24,7 @@ import rs.appsterdam.app.ui.screens.JobsView
 import rs.appsterdam.app.ui.screens.about.AboutView
 import rs.appsterdam.app.ui.screens.home.HomeView
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
+import rs.appsterdam.app.utils.showAsBottomSheet
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +42,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TabView()
+                    TabView { sheet ->
+                        showAsBottomSheet { onClose ->
+                            sheet(onClose)
+                        }
+                    }
                 }
             }
         }
@@ -54,7 +59,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TabView() {
+fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
     var tabIndex by remember {
         mutableStateOf(0)
     }
@@ -76,7 +81,7 @@ fun TabView() {
                 "Home" -> HomeView().Layout()
                 "Events" -> EventsView().Layout()
                 "Jobs" -> JobsView().Layout()
-                "About" -> AboutView().Layout()
+                "About" -> AboutView(showBottomSheet).Layout()
             }
         }
 
@@ -108,6 +113,6 @@ fun TabView() {
 @Composable
 fun DefaultPreview() {
     AppsterdamTheme {
-        TabView()
+        TabView {}
     }
 }
