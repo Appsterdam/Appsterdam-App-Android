@@ -14,6 +14,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.launch
 
+// Credit: https://proandroiddev.com/jetpack-compose-bottom-sheet-over-android-view-using-kotlin-extension-7fecfa8fe369
+
 // Extension for Activity
 fun Activity.showAsBottomSheet(content: @Composable (() -> Unit) -> Unit) {
     val viewGroup = this.findViewById(android.R.id.content) as ViewGroup
