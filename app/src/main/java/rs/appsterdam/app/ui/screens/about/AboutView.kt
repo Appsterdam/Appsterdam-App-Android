@@ -186,28 +186,33 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
     }
 
     @Composable
-    fun MemberCard(member: Member) = Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .padding(horizontal = 4.dp)
-            .clickable {
-                showBottomSheet { onClose ->
-                    MemberDescriptionSheet(member, onClose)
-                }
-            }
-    ) {
-        GlideImage(
-            imageModel = member.picture,
-            contentScale = ContentScale.Crop,
-            placeHolder = Icons.Rounded.Person,
-            error = Icons.Rounded.Person,
+    fun MemberCard(member: Member) {
+        val uriHandler = LocalUriHandler.current
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .size(140.dp)
-                .padding(10.dp)
-                .clip(CircleShape)
-        )
-        Text("${member.name}", style = Typography.bodyLarge.copy(color = AppsterdamPrimary))
-        Text("${member.function}", style = Typography.labelSmall)
+                .padding(horizontal = 4.dp)
+                .clickable {
+                    showBottomSheet { onClose ->
+                        MemberDescriptionSheet(member, onClose) { url ->
+                            openURL(uriHandler, url)
+                        }
+                    }
+                }
+        ) {
+            GlideImage(
+                imageModel = member.picture,
+                contentScale = ContentScale.Crop,
+                placeHolder = Icons.Rounded.Person,
+                error = Icons.Rounded.Person,
+                modifier = Modifier
+                    .size(140.dp)
+                    .padding(10.dp)
+                    .clip(CircleShape)
+            )
+            Text("${member.name}", style = Typography.bodyLarge.copy(color = AppsterdamPrimary))
+            Text("${member.function}", style = Typography.labelSmall)
+        }
     }
 }
 
