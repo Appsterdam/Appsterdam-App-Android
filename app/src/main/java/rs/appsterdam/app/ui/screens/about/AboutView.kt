@@ -202,8 +202,7 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
             placeHolder = Icons.Rounded.Person,
             error = Icons.Rounded.Person,
             modifier = Modifier
-                .height(140.dp)
-                .width(140.dp)
+                .size(140.dp)
                 .padding(10.dp)
                 .clip(CircleShape)
         )
