@@ -46,7 +46,7 @@ class EventsView {
     @Composable
     fun Layout() {
         Column {
-            for (index in 0..100) {
+            for (index in 0..50) {
                 EventRow("Event $index")
             }
         }

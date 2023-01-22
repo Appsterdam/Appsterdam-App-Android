@@ -132,7 +132,7 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
             CenteredText("Privacy Policy")
         }
         Spacer(Modifier.height(spacing))
-        CenteredText("© 2012-2022 Stichting Appsterdam. All rights reserved.")
+        CenteredText("© 2012-2023 Stichting Appsterdam. All rights reserved.")
         Spacer(Modifier.height(spacing))
     }
 
