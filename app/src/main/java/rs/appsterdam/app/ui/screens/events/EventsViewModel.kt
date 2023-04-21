@@ -38,7 +38,7 @@ class JobsViewModel : ViewModel() {
 
             println("APP:Home=$eventsValue")
             GlobalScope.launch(Dispatchers.Main) {
-                 state.value = State.Success(eventsValue)
+//                 state.value = State.Success(eventsValue)
             }
         }
 
