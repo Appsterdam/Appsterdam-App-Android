@@ -2,12 +2,14 @@ package rs.appsterdam.app.ui.screens.home
 
 import android.content.res.Resources
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,7 +21,6 @@ import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
 class HomeView {
-
     @Composable
     fun Layout() {
         val viewModel = getViewModel<HomeViewModel>()
@@ -65,12 +66,16 @@ class HomeView {
 
     @Composable
     fun SuccessContent(markdown: String) {
+        // Text color needs to change on dark mode status
+        val textColor: Color = if (isSystemInDarkTheme()) Color.White else Color.Black
+
         MarkdownText(
             markdown
-                // Markdown editor ignores one line break, so we need 2
-                .replace("\n", "\n\n"),
-            fontSize = 18.sp,
-            modifier = Modifier.fillMaxWidth()
+                    // Markdown editor ignores one line break, so we need 2
+                    .replace("\n", "\n\n"),
+                fontSize = 18.sp,
+                modifier = Modifier.fillMaxWidth(),
+                color = textColor
         )
     }
 }

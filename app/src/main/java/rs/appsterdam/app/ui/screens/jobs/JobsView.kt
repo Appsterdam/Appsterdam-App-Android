@@ -1,4 +1,4 @@
-package rs.appsterdam.app.ui.screens
+package rs.appsterdam.app.ui.screens.jobs
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

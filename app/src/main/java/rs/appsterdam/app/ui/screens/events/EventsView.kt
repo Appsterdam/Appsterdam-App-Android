@@ -1,4 +1,4 @@
-package rs.appsterdam.app.ui.screens
+package rs.appsterdam.app.ui.screens.events
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
