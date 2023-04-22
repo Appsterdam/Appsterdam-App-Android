@@ -19,10 +19,10 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import rs.appsterdam.app.di.viewModelModule
-import rs.appsterdam.app.ui.screens.events.EventsView
-import rs.appsterdam.app.ui.screens.jobs.JobsView
 import rs.appsterdam.app.ui.screens.about.AboutView
+import rs.appsterdam.app.ui.screens.events.EventsLayout
 import rs.appsterdam.app.ui.screens.home.HomeView
+import rs.appsterdam.app.ui.screens.jobs.JobsView
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import rs.appsterdam.app.utils.showAsBottomSheet
 
@@ -79,7 +79,7 @@ fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) 
         ) {
             when (tabTitles[tabIndex]) {
                 "Home" -> HomeView().Layout()
-                "Events" -> EventsView().Layout()
+                "Events" -> EventsLayout()
                 "Jobs" -> JobsView().Layout()
                 "About" -> AboutView(showBottomSheet).Layout()
             }

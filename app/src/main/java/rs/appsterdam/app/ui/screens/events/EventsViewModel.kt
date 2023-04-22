@@ -3,20 +3,22 @@ package rs.appsterdam.app.ui.screens.events
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import rs.appsterdam.app.models.Events
+import rs.appsterdam.app.models.EventGroup
+import java.lang.reflect.Type
 import java.net.URL
 
-class JobsViewModel : ViewModel() {
+
+class EventsViewModel : ViewModel() {
 
     sealed class State {
         object Loading : State()
-        data class Success(val value: Events) : State()
+        data class Success(val eventList: List<EventGroup>) : State()
     }
 
     val state = MutableStateFlow<State>(State.Loading)
@@ -30,15 +32,12 @@ class JobsViewModel : ViewModel() {
         state.value = State.Loading
 
         GlobalScope.launch(Dispatchers.IO) {
-            val str = URL("https://appsterdam.rs/api/events.json").readText()
-            val json = JSONObject(str)
+            val str = URL("https://appsterdam.rs/api/events_100.json").readText()
+            val listType: Type = object : TypeToken<ArrayList<EventGroup>>() {}.type
+            val eventList: List<EventGroup> = Gson().fromJson(str, listType)
 
-            val gson = Gson()
-            val eventsValue = gson.fromJson(json.toString(), Events::class.java)
-
-            println("APP:Home=$eventsValue")
             GlobalScope.launch(Dispatchers.Main) {
-                 state.value = State.Success(eventsValue)
+                state.value = State.Success(eventList)
             }
         }
 

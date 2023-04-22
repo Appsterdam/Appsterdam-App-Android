@@ -1,7 +1,8 @@
 package rs.appsterdam.app.models
 import com.google.gson.annotations.SerializedName
 
-data class Events (
+
+data class EventGroup (
     @SerializedName("name")
     var name: String? = null,
     @SerializedName("events")
