@@ -16,7 +16,7 @@ class JobsViewModel : ViewModel() {
 
     sealed class State {
         object Loading : State()
-        data class Success(val markdown: String) : State()
+        data class Success(val value: Events) : State()
     }
 
     val state = MutableStateFlow<State>(State.Loading)
@@ -38,7 +38,7 @@ class JobsViewModel : ViewModel() {
 
             println("APP:Home=$eventsValue")
             GlobalScope.launch(Dispatchers.Main) {
-//                 state.value = State.Success(eventsValue)
+                 state.value = State.Success(eventsValue)
             }
         }
 
