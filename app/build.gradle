@@ -10,7 +10,7 @@ android {
         applicationId "rs.appsterdam.app"
         minSdk 21
         targetSdk 33
-        versionCode 4 // Build number
+        versionCode 6 // Build number
         versionName "1.0" // Version number
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
