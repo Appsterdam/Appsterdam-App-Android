@@ -74,7 +74,6 @@ fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) 
     Column {
         Column(
             modifier = Modifier
-                .verticalScroll(rememberScrollState())
                 .weight(weight = 1f, fill = true)
         ) {
             when (tabTitles[tabIndex]) {

@@ -46,7 +46,9 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
     @Composable
     fun AboutContent(
         state: AboutViewModel.State
-    ) = Column {
+    ) = Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
         val uriHandler = LocalUriHandler.current
         val spacing = 10.dp
 
@@ -159,7 +161,7 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
     fun TeamComposable(team: Team) = Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(BackgroundSecondary, RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.onTertiary, RoundedCornerShape(12.dp))
             .padding(vertical = 12.dp)
     ) {
         Text(

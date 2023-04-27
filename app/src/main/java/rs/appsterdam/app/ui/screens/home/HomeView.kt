@@ -4,6 +4,8 @@ import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,7 +31,9 @@ class HomeView {
     }
 
     @Composable
-    fun HomeContent(state: HomeViewModel.State) = Column {
+    fun HomeContent(state: HomeViewModel.State) = Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
         val spacing = 10.dp
 
         Spacer(Modifier.height(spacing + spacing))
