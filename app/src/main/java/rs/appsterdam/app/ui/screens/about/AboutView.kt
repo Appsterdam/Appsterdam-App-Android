@@ -28,10 +28,7 @@ import rs.appsterdam.app.BuildConfig
 import rs.appsterdam.app.R
 import rs.appsterdam.app.models.Member
 import rs.appsterdam.app.models.Team
-import rs.appsterdam.app.ui.theme.AppsterdamPrimary
-import rs.appsterdam.app.ui.theme.AppsterdamTheme
-import rs.appsterdam.app.ui.theme.BackgroundSecondary
-import rs.appsterdam.app.ui.theme.Typography
+import rs.appsterdam.app.ui.theme.*
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
 class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
@@ -161,7 +158,7 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
     fun TeamComposable(team: Team) = Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.onTertiary, RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.tertiary, RoundedCornerShape(12.dp))
             .padding(vertical = 12.dp)
     ) {
         Text(

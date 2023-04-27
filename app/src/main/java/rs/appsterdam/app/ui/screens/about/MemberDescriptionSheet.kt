@@ -1,6 +1,7 @@
 package rs.appsterdam.app.ui.screens.about
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -10,7 +11,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material3.Divider
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,9 +27,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import rs.appsterdam.app.R
 import rs.appsterdam.app.models.Member
-import rs.appsterdam.app.ui.theme.AppsterdamPrimary
-import rs.appsterdam.app.ui.theme.BackgroundSecondary
-import rs.appsterdam.app.ui.theme.Typography
+import rs.appsterdam.app.ui.theme.*
 
 @Composable
 fun MemberDescriptionSheet(
@@ -37,10 +38,12 @@ fun MemberDescriptionSheet(
     modifier = Modifier
         .fillMaxWidth()
 ) {
-    SheetHeader(member.name, member.function, onClose)
-    SheetContent(member, openURL)
+    AppsterdamTheme {
+        SheetHeader(member.name, member.function, onClose)
+        Divider()
+        SheetContent(member, openURL)
+    }
 }
-
 
 @Composable
 fun SheetHeader(
@@ -51,15 +54,20 @@ fun SheetHeader(
     modifier = Modifier
         .fillMaxWidth()
         .clip(RoundedCornerShape(topStartPercent = 25, topEndPercent = 25))
-        .background(color = Color.White),
+        .background(color = MaterialTheme.colorScheme.background),
     horizontalArrangement = Arrangement.SpaceBetween,
 ) {
     Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)) {
-        Text(name ?: "", style = Typography.labelLarge)
-        Text(function ?: "", style = Typography.bodyLarge)
+        Text(name ?: "", style = Typography.labelLarge, color = MaterialTheme.colorScheme.onSurface)
+        Text(function ?: "", style = Typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
     }
     IconButton(onClick = onClose) {
-        Icon(imageVector = Icons.Rounded.Close, contentDescription = "Close member description")
+        Icon(
+            imageVector = Icons.Rounded.Close,
+            contentDescription = "Close member description",
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.tertiary, RoundedCornerShape(8.dp))
+        )
     }
 }
 
@@ -67,7 +75,7 @@ fun SheetHeader(
 fun SheetContent(member: Member, openURL: (url: String) -> Unit) = LazyColumn(
     modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.White),
+        .background(color = MaterialTheme.colorScheme.background),
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     item {
@@ -144,14 +152,18 @@ fun MemberLinks(
 fun BioMarkdown(bio: String) = Box(
     modifier = Modifier
         .padding(16.dp)
-        .background(BackgroundSecondary, RoundedCornerShape(8.dp))
+        .background(MaterialTheme.colorScheme.tertiary, RoundedCornerShape(8.dp))
         .padding(16.dp)
 ) {
+    val textColor: Color = if (isSystemInDarkTheme()) Color.White else Color.Black
+
     MarkdownText(
         bio
             // Markdown editor ignores one line break, so we need 2
             .replace("\n", "\n\n"),
         fontSize = 18.sp,
-        modifier = Modifier.fillMaxWidth()
+        color = textColor,
+        modifier = Modifier
+            .fillMaxWidth()
     )
 }

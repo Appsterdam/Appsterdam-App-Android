@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import org.koin.androidx.compose.getViewModel
 import rs.appsterdam.app.R
-import rs.appsterdam.app.ui.theme.AppsterdamTheme
+import rs.appsterdam.app.ui.theme.*
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
 class HomeView {
@@ -70,7 +70,6 @@ class HomeView {
 
     @Composable
     fun SuccessContent(markdown: String) {
-        // Text color needs to change on dark mode status
         val textColor: Color = if (isSystemInDarkTheme()) Color.White else Color.Black
 
         MarkdownText(

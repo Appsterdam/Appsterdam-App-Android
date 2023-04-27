@@ -20,27 +20,27 @@ import androidx.core.view.ViewCompat
 private val DarkColorScheme = darkColorScheme(
     primary = AppsterdamPrimary,
     secondary = AppsterdamSecondary,
-    tertiary = AppsterdamPrimary,
+    tertiary = Color(0x33D5D2D2),
     background = Color(0xFF000000),
-    surface = Color(0xFF000000),
+    surface = Color(0xFF646464),
     onPrimary = Color.Black,
     onSecondary = Color.Black,
-    onTertiary = Color(0x1AFFFFFF),
-    onBackground = Color(0xFFFFFFFF),
-    onSurface = Color(0xFF000000)
+    onTertiary = Color.White,
+    onBackground = Color.White,
+    onSurface = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = AppsterdamPrimary,
     secondary = AppsterdamSecondary,
-    tertiary = AppsterdamPrimary,
+    tertiary = Color(0xFFD5D2D2),
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color(0xFFF0EFEF),
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F)
+    onPrimary = Color.Black,
+    onSecondary = Color.Black,
+    onTertiary = Color.Black,
+    onBackground = Color.Black,
+    onSurface = Color.Black
 )
 
 @Composable
