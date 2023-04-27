@@ -46,12 +46,6 @@ fun EventsContent(state: EventsViewModel.State) = when (state) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun EventsSuccess(eventList: List<EventGroup>) = LazyColumn {
-        //TODO this column can be converted to a LazyColumn.
-        // However, this will cause a crash, as this Composable is nested within
-        // 'verticalScroll' Composable.
-        // So, to fix. You would need to remove the 'verticalScroll' from main activity,
-        // and then make each 'tab' have its own verticalScroll modifier.
-        // (except this tab, because the LazyColumn will provide its own scrolling)
         eventList.map { eventGroup ->
             eventGroup.name?.let {
                     stickyHeader {
