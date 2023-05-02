@@ -28,7 +28,6 @@ import rs.appsterdam.app.utils.collectAsStateRepeatedly
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
 @Composable
 fun EventsLayout() {
     val viewModel = getViewModel<EventsViewModel>()
@@ -87,7 +86,9 @@ fun EventRow(event: Event) = Column {
             "Event: ${event.name}\nID: ${event.id}",
             Toast.LENGTH_SHORT
         ).show()
-    }) {
+    }
+    .padding(horizontal = 5.dp)
+    ) {
         Column {
             Text(
                 text = event.name.toString(),
@@ -115,7 +116,7 @@ fun EventRow(event: Event) = Column {
     }
 
     Divider()
-    Spacer(modifier = Modifier.height(1.dp))
+    Spacer(modifier = Modifier.height(2.dp))
 }
 
 @Preview(showBackground = true)

@@ -2,9 +2,11 @@ package rs.appsterdam.app.models
 import com.google.gson.annotations.SerializedName
 
 data class Jobs (
-    @SerializedName("jobUrl")
+    @SerializedName("JobID")
+    var jobID: String? = null,
+    @SerializedName("JobUrl")
     var jobUrl: String? = null,
-        @SerializedName("JobTitle")
+    @SerializedName("JobTitle")
     var JobTitle: String? = null,
     @SerializedName("JobShortDescription")
     var JobShortDescription: String? = null,
