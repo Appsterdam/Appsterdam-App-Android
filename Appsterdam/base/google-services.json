@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204022957364",
+    "project_id": "appsterdam-f39a1",
+    "storage_bucket": "appsterdam-f39a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204022957364:android:f20584f9bf2462e84c9161",
+        "android_client_info": {
+          "package_name": "rs.appsterdam.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204022957364-7q5g3ivvivdoii0nlluhum8rpq0l6koh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkunauhT7QKHwv24HxPgeG5tYTvDerk7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204022957364-7q5g3ivvivdoii0nlluhum8rpq0l6koh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
