@@ -1,3 +1,89 @@
 <resources>
     <string name="app_name">Appsterdam</string>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+
+    <string name="title_home">Home</string>
+    <string name="title_events">Events</string>
+    <string name="title_jobs">Jobs</string>
+    <string name="title_about">About</string>
+
+    <!-- HOME PAGE -->
+
+    <string name="link_join_community">
+        <a href="https://appsterdam.rs/join-community/">Join the community</a>
+    </string>
+    <string name="text_join_community">We are 4,500 members of makers, designers and
+        developers.\nApp makers
+        helping app makers - come join our community!
+    </string>
+    <string name="link_collaborate">
+        <a href="https://appsterdam.rs/collaborate/">Collaborate</a>
+    </string>
+    <string name="text_collaborate">Do you have an SDK, API or plugin that you want to share with
+        Appsterdamers?\nContact us if you want to host a workshop or guru session.
+    </string>
+    <string name="link_share_project">
+        <a href="https://appsterdam.rs/shared-projects/">Share a project</a>
+    </string>
+    <string name="text_share_project">Our members are always developing new projects, products and
+        solutions.\nCheck out the projects they are most proud of here.
+    </string>
+    <string name="title_settings">Settings</string>
+
+    <!-- EVENTS PAGE -->
+
+    <string name="meetup_url">https://www.meetup.com/Appsterdam/events/%s</string>
+
+    <!-- JOBS PAGE -->
+
+    <string name="text_location">Location: %s</string>
+    <string name="text_provider">Provided by: %s</string>
+    <string name="text_apply_before">Apply before: %s</string>
+
+    <!-- ABOUT PAGE -->
+
+    <string name="version">Version 1.0</string>
+    <string name="quote">\“If you want to make movies, go to Hollywood.\nIf you want to make
+        musicals, go to Broadway.\nIf you want to make apps, go to Appsterdam.\”
+    </string>
+    <string name="mike_lee">- Mike Lee\n</string>
+    <string name="appsterdam_team">Appsterdam Team</string>
+    <string name="link_discord">
+        <a href="https://discord.com/invite/HNqZPUy7An">Discord</a>
+    </string>
+    <string name="link_facebook">
+        <a href="https://www.facebook.com/Appsterdam/">Facebook</a>
+    </string>
+    <string name="link_twitter">
+        <a href="https://twitter.com/appsterdam">Twitter</a>
+    </string>
+    <string name="link_youtube">
+        <a href="https://www.youtube.com/appsterdam">Youtube</a>
+    </string>
+    <string name="link_website">
+        <a href="https://appsterdam.rs">Website</a>
+    </string>
+    <string name="link_code_of_conduct">
+        <a href="https://appsterdam.rs/code-of-conduct/">Code of Conduct</a>
+    </string>
+    <string name="link_privacy_policy">
+        <a href="https://appsterdam.rs/privacy-policy/">Privacy Policy</a>
+    </string>
+    <string name="all_rights_reserved">© 2012–2023 Stichting Appsterdam. All rights reserved
+    </string>
+    <string name="title_search">Search</string>
+
+    <!-- CONTENT DESCRIPTIONS -->
+
+    <string name="cd_twitter">Link to Twitter account</string>
+    <string name="cd_linkedin">Link to LinkedIn account</string>
+    <string name="cd_website">Link to website</string>
+    <string name="cd_attendees">Number of attendees</string>
+
+    <string name="title_show_descriptions">Show Descriptions</string>
+    <string name="title_enable_search">Enable Search</string>
+    <string name="title_notify_on_new_events">Notify on new</string>
+    <string name="title_enable_jobs">Enable</string>
+    <string name="title_notify_on_new_jobs">Notify on new</string>
 </resources>

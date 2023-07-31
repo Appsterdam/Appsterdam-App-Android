@@ -1,0 +1,115 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="rs.appsterdam.app.data.model.Member" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16dp"
+            tools:context=".presentation.about.MemberDetailsFragment">
+
+            <ImageView
+                android:id="@+id/member_image"
+                android:layout_width="@dimen/_192dp"
+                android:layout_height="@dimen/_192dp"
+                android:layout_gravity="center_horizontal"
+                android:importantForAccessibility="no"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{item.picture}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/member_function"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:gravity="center_horizontal"
+                android:text="@{item.function}"
+                android:textColor="@color/red_200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/member_image" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_0dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/member_function">
+
+                <ImageView
+                    android:id="@+id/twitter"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/cd_twitter"
+                    android:visibility="@{item.twitter.isEmpty ? View.INVISIBLE : View.VISIBLE}"
+                    app:srcCompat="@drawable/logo_twitter" />
+
+                <ImageView
+                    android:id="@+id/linkedin"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/cd_linkedin"
+                    android:visibility="@{item.linkedin.isEmpty ? View.INVISIBLE : View.VISIBLE}"
+                    app:srcCompat="@drawable/logo_linkedin" />
+
+                <ImageView
+                    android:id="@+id/website"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/cd_website"
+                    android:visibility="@{item.website.isEmpty ? View.INVISIBLE : View.VISIBLE}"
+                    app:srcCompat="@drawable/globe_icon" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_0dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:background="@color/grey_200"
+                app:cardCornerRadius="@dimen/_8dp"
+                app:cardElevation="@dimen/cardview_default_elevation"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <WebView
+                        style="@style/TextAppearance.Material3.BodyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:data="@{item.bio}" />
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,97 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="rs.appsterdam.app.data.model.Event" />
+
+        <variable
+            name="showDescriptions"
+            type="Boolean" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        app:cardCornerRadius="@dimen/_8dp"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/event_title"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:text="@{item.name}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/event_description"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@{item.description}"
+                android:visibility="@{showDescriptions ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+            <ImageView
+                android:id="@+id/event_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:importantForAccessibility="no"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_description"
+                app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/event_date"
+                style="@style/TextAppearance.Material3.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4dp"
+                android:layout_marginTop="20dp"
+                app:formatDate="@{item.date}"
+                app:layout_constraintStart_toEndOf="@+id/event_calendar"
+                app:layout_constraintTop_toBottomOf="@+id/event_description" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/event_attendees"
+                style="@style/TextAppearance.Material3.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4dp"
+                android:layout_marginTop="20dp"
+                android:text="@{item.attendees}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_description" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:contentDescription="@string/cd_attendees"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/event_attendees"
+                app:layout_constraintTop_toBottomOf="@+id/event_description"
+                app:srcCompat="@drawable/baseline_how_to_reg_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,120 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="rs.appsterdam.app.presentation.about.AboutFragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_discord"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_facebook"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_twitter"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_youtube"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_website"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_code_of_conduct"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="@string/link_privacy_policy"
+            android:textColorLink="@color/red_200"
+            app:link="@{true}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/all_rights_reserved" />
+    </LinearLayout>
+</layout>

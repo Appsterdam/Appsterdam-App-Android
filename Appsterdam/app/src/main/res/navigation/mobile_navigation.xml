@@ -1,0 +1,45 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="rs.appsterdam.app.presentation.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_events"
+        android:name="rs.appsterdam.app.presentation.events.EventsFragment"
+        android:label="@string/title_events"
+        tools:layout="@layout/fragment_events" />
+
+    <fragment
+        android:id="@+id/navigation_jobs"
+        android:name="rs.appsterdam.app.presentation.jobs.JobsFragment"
+        android:label="@string/title_jobs"
+        tools:layout="@layout/fragment_jobs" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="rs.appsterdam.app.presentation.about.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_jobs">
+
+        <action
+            android:id="@+id/action_navigation_about_to_memberDetailsFragment"
+            app:destination="@id/navigation_member_details" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_member_details"
+        android:name="rs.appsterdam.app.presentation.about.MemberDetailsFragment"
+        tools:layout="@layout/fragment_member_details">
+
+        <argument
+            android:name="member"
+            app:argType="rs.appsterdam.app.data.model.Member" />
+    </dialog>
+</navigation>
