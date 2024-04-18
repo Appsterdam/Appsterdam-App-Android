@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -254,8 +255,8 @@ fun ColouredButton(
 ) = Button(
     onClick = onClick,
     colors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.background,
-        contentColor = MaterialTheme.colorScheme.primary
+        containerColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.secondary
     ),
     content = content,
     modifier = Modifier.padding(horizontal = 16.dp)

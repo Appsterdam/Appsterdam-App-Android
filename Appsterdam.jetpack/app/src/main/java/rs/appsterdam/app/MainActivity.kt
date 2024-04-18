@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
@@ -71,6 +73,13 @@ fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) 
         "About"
     )
 
+    val tabIcons = listOf(
+        R.drawable.home,
+        R.drawable.events,
+        R.drawable.jobs,
+        R.drawable.about
+    )
+
     Column {
         Column(
             modifier = Modifier
@@ -98,7 +107,11 @@ fun TabView(showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) 
                         tabIndex = index
                     },
                     icon = {
-                        Text("Icon")
+                        Icon(
+                            painter = painterResource(id = tabIcons[index]),
+                            contentDescription = title,
+                            tint = MaterialTheme.colorScheme.secondary,
+                        )
                     },
                     text = {
                         Text(text = title)
