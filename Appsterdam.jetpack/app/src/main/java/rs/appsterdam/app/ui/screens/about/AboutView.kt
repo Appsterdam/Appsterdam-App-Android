@@ -1,5 +1,9 @@
 package rs.appsterdam.app.ui.screens.about
 
+import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -15,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
@@ -31,6 +36,7 @@ import rs.appsterdam.app.ui.theme.AppsterdamPrimary
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import rs.appsterdam.app.ui.theme.Typography
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
+
 
 class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
 
@@ -64,7 +70,16 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
 
         Spacer(Modifier.height(spacing))
         CenteredText("Appsterdam", style = Typography.headlineMedium)
-//        CenteredText("Version: " + BuildConfig.VERSION_NAME)
+
+        var context: Context = LocalContext.current
+        val info = context?.
+            packageManager?.
+            getPackageInfo(
+                context.packageName,
+                PackageManager.GET_ACTIVITIES
+            )
+        CenteredText("Version: " + info?.versionName)
+
         Spacer(Modifier.height(spacing + spacing))
         CenteredText(
             "“If you want to make movies, go to Hollywood.\n" +
