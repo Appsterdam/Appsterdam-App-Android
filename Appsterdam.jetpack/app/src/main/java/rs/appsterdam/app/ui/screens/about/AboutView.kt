@@ -24,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.glide.GlideImage
 import org.koin.androidx.compose.getViewModel
-import rs.appsterdam.app.BuildConfig
 import rs.appsterdam.app.R
 import rs.appsterdam.app.models.Member
 import rs.appsterdam.app.models.Team
@@ -65,7 +64,7 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
 
         Spacer(Modifier.height(spacing))
         CenteredText("Appsterdam", style = Typography.headlineMedium)
-        CenteredText("Version: " + BuildConfig.VERSION_NAME)
+//        CenteredText("Version: " + BuildConfig.VERSION_NAME)
         Spacer(Modifier.height(spacing + spacing))
         CenteredText(
             "“If you want to make movies, go to Hollywood.\n" +
