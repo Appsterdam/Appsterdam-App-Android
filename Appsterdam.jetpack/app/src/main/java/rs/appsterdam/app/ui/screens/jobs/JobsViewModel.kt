@@ -9,8 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import rs.appsterdam.app.models.EventGroup
 import rs.appsterdam.app.models.Jobs
 import java.lang.reflect.Type
 import java.net.URL

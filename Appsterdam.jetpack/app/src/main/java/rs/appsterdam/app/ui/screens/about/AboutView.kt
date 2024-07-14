@@ -1,9 +1,7 @@
 package rs.appsterdam.app.ui.screens.about
 
 import android.content.Context
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -38,7 +36,6 @@ import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import rs.appsterdam.app.ui.theme.Typography
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
 
-
 class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -> Unit) {
 
     @Composable
@@ -72,9 +69,8 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
         Spacer(Modifier.height(spacing))
         CenteredText("Appsterdam", style = Typography.headlineMedium)
 
-        var context: Context = LocalContext.current
-        val info = context?.
-            packageManager?.
+        val context: Context = LocalContext.current
+        val info = context.packageManager?.
             getPackageInfo(
                 context.packageName,
                 PackageManager.GET_ACTIVITIES

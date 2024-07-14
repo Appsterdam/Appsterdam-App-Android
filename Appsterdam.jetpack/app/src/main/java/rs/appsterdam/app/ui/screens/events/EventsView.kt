@@ -1,16 +1,12 @@
 package rs.appsterdam.app.ui.screens.events
 
-import android.content.ClipData
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.ui.graphics.Color
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
-import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +23,6 @@ import rs.appsterdam.app.models.EventGroup
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import rs.appsterdam.app.ui.theme.Typography
 import rs.appsterdam.app.utils.collectAsStateRepeatedly
-import rs.appsterdam.app.ui.screens.events.EventsViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -51,7 +46,7 @@ class EventsView {
     fun EventsSuccess(eventList: List<EventGroup>) = Column {
         eventList.map { eventGroup ->
             eventGroup.name?.let {
-                // stickyHeader Requires LazyColumn but that doesnt work.
+                // stickyHeader Requires LazyColumn but that doesn't work.
                 // Then we get a "Vertically scrollable component was
                 // measured with an infinity maximum height constraints,
                 // which is disallowed." error.
