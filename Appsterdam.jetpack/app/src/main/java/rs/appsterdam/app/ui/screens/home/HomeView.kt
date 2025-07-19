@@ -71,8 +71,8 @@ class HomeView {
             markdown
                 // Markdown editor ignores one line break, so we need 2
                 .replace("\n", "\n\n"),
-            fontSize = 18.sp,
-            color = colorScheme.onPrimary,
+//            fontSize = 18.sp,
+//            color = colorScheme.onPrimary,
             modifier = Modifier.fillMaxWidth()
         )
     }

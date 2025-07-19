@@ -83,16 +83,16 @@ fun SheetContent(member: Member, openURL: (url: String) -> Unit) = LazyColumn(
 ) {
     item {
         Spacer(modifier = Modifier.height(32.dp))
-        GlideImage(
-            imageModel = member.picture,
-            contentScale = ContentScale.Crop,
-            placeHolder = Icons.Rounded.Person,
-            error = Icons.Rounded.Person,
-            modifier = Modifier
-                .size(200.dp)
-                .padding(10.dp)
-                .clip(CircleShape)
-        )
+//        GlideImage(
+//            imageModel = member.picture,
+//            contentScale = ContentScale.Crop,
+//            placeHolder = Icons.Rounded.Person,
+//            error = Icons.Rounded.Person,
+//            modifier = Modifier
+//                .size(200.dp)
+//                .padding(10.dp)
+//                .clip(CircleShape)
+//        )
         Spacer(modifier = Modifier.height(16.dp))
     }
     item {
@@ -163,8 +163,8 @@ fun BioMarkdown(bio: String) = Box(
         bio
             // Markdown editor ignores one line break, so we need 2
             .replace("\n", "\n\n"),
-        fontSize = 18.sp,
-        color = MaterialTheme.colorScheme.onPrimary,
+//        fontSize = 18.sp,
+//        color = MaterialTheme.colorScheme.onPrimary,
         modifier = Modifier.fillMaxWidth()
     )
 }

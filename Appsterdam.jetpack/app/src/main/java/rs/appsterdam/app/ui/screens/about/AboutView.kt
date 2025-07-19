@@ -212,16 +212,16 @@ class AboutView(val showBottomSheet: (sheet: @Composable (() -> Unit) -> Unit) -
                     }
                 }
         ) {
-            GlideImage(
-                imageModel = member.picture,
-                contentScale = ContentScale.Crop,
-                placeHolder = Icons.Rounded.Person,
-                error = Icons.Rounded.Person,
-                modifier = Modifier
-                    .size(140.dp)
-                    .padding(10.dp)
-                    .clip(CircleShape)
-            )
+//            GlideImage(
+//                imageModel = member.picture,
+//                contentScale = ContentScale.Crop,
+//                placeHolder = Icons.Rounded.Person,
+//                error = Icons.Rounded.Person,
+//                modifier = Modifier
+//                    .size(140.dp)
+//                    .padding(10.dp)
+//                    .clip(CircleShape)
+//            )
             Text("${member.name}", style = Typography.bodyLarge.copy(color = AppsterdamPrimary))
             Text("${member.function}", style = Typography.labelSmall)
         }
