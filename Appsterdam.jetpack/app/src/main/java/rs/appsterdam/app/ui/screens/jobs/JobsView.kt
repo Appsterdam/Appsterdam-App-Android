@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.dp
 import rs.appsterdam.app.ui.theme.AppsterdamTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Divider
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -89,7 +89,7 @@ fun JobRow(job: Jobs) = Column {
         }
     }
 
-    Divider()
+    HorizontalDivider()
     Spacer(modifier = Modifier.height(2.dp))
 }
 
