@@ -11,7 +11,7 @@ android {
         applicationId "rs.appsterdam.app"
         minSdk 21
         targetSdk 33
-        versionCode 4 // Build number
+        versionCode 10 // Build number
         versionName "1.0" // Version number
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -64,6 +64,8 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation 'io.insert-koin:koin-android:4.1.0'
     implementation 'io.insert-koin:koin-androidx-compose:3.2.0'
+    implementation "com.github.skydoves:landscapist-coil:2.2.5"
+    implementation "io.coil-kt:coil-compose:2.5.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
