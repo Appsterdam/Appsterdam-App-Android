@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
@@ -160,11 +161,13 @@ fun BioMarkdown(bio: String) = Box(
 ) {
     // TODO: Link colors should be the same as the primary color
     MarkdownText(
-        bio
+        markdown = bio
             // Markdown editor ignores one line break, so we need 2
             .replace("\n", "\n\n"),
-        fontSize = 18.sp,
-        color = MaterialTheme.colorScheme.onPrimary,
+        style = LocalTextStyle.current.copy(
+            fontSize = 18.sp,
+            color = MaterialTheme.colorScheme.onPrimary
+        ),
         modifier = Modifier.fillMaxWidth()
     )
 }

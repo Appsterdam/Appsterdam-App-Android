@@ -4,6 +4,8 @@ import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -71,8 +73,10 @@ class HomeView {
             markdown
                 // Markdown editor ignores one line break, so we need 2
                 .replace("\n", "\n\n"),
-            fontSize = 18.sp,
-            color = colorScheme.onPrimary,
+            style = LocalTextStyle.current.copy(
+                fontSize = 18.sp,
+                color = colorScheme.onPrimary
+            ),
             modifier = Modifier.fillMaxWidth()
         )
     }
