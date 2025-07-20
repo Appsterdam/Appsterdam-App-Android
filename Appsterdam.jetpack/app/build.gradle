@@ -57,7 +57,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.21.2-beta"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.21.2-beta"
     implementation "com.github.skydoves:landscapist-glide:1.6.1"
-    implementation 'com.github.jeziellago:compose-markdown:0.2.9'
+    implementation 'com.github.jeziellago:compose-markdown:0.5.7'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
