@@ -9,8 +9,8 @@ android {
     defaultConfig {
         applicationId "rs.appsterdam.app"
         minSdk 21
-        targetSdk 34
-        versionCode 13 // Build number
+        targetSdk 36
+        versionCode 16 // Build number
         versionName "1.0.1" // Version number
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
