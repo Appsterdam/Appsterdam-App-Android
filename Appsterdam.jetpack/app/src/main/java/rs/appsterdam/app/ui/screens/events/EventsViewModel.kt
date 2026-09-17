@@ -4,17 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import rs.appsterdam.app.data.NetworkRepository
 import rs.appsterdam.app.models.EventGroup
 import java.lang.reflect.Type
-import java.net.URL
 
 
-class EventsViewModel : ViewModel() {
+class EventsViewModel(private val networkRepository: NetworkRepository) : ViewModel() {
 
     sealed class State {
         object Loading : State()
@@ -27,18 +27,22 @@ class EventsViewModel : ViewModel() {
         loadHomeContent()
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     private fun loadHomeContent() = viewModelScope.launch {
         state.value = State.Loading
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val str = URL("https://appsterdam.rs/api/events_100.json").readText()
-            val listType: Type = object : TypeToken<ArrayList<EventGroup>>() {}.type
-            val eventList: List<EventGroup> = Gson().fromJson(str, listType)
-
-            GlobalScope.launch(Dispatchers.Main) {
+        networkRepository.fetchData("https://appsterdam.rs/api/events.json")
+            .map { str ->
+                try {
+                    val listType: Type = object : TypeToken<ArrayList<EventGroup>>() {}.type
+                    Gson().fromJson<List<EventGroup>>(str, listType)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    emptyList()
+                }
+            }
+            .flowOn(Dispatchers.Default)
+            .collect { eventList ->
                 state.value = State.Success(eventList)
             }
-        }
     }
 }

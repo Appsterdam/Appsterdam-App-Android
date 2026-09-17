@@ -3,8 +3,11 @@ package rs.appsterdam.app.ui.screens.home
 import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.LocalTextStyle
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
@@ -31,31 +34,27 @@ class HomeView {
     }
 
     @Composable
-    fun HomeContent(state: HomeViewModel.State) = Column {
+    fun HomeContent(state: HomeViewModel.State) = Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+    ) {
         val spacing = 10.dp
-
-        Spacer(Modifier.height(spacing + spacing))
 
         Image(
             painter = painterResource(R.drawable.appsterdam_logo),
             contentDescription = "Appsterdam Logo",
             modifier = Modifier
-                .height(
-                    Resources
-                        .getSystem()
-                        .displayMetrics
-                        .widthPixels.dp / 5
-                )
-                .fillMaxWidth()
+                .height(120.dp)
+                .fillMaxWidth(),
         )
 
-        Spacer(Modifier.height(spacing))
+        Spacer(Modifier.height(spacing * 2))
 
         when (state) {
             is HomeViewModel.State.Success -> SuccessContent(markdown = state.markdown)
             else -> LoadingContent()
         }
-
     }
 
     @Composable
@@ -68,17 +67,22 @@ class HomeView {
 
     @Composable
     fun SuccessContent(markdown: String) {
-        // TODO: Link colors should be the same as the primary color
-        MarkdownText(
-            markdown
-                // Markdown editor ignores one line break, so we need 2
-                .replace("\n", "\n\n"),
-            style = LocalTextStyle.current.copy(
-                fontSize = 18.sp,
-                color = colorScheme.onPrimary
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
+        ElevatedCard(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                MarkdownText(
+                    markdown
+                        // Markdown editor ignores one line break, so we need 2
+                        .replace("\n", "\n\n"),
+                    style = LocalTextStyle.current.copy(
+                        fontSize = 18.sp,
+                        color = colorScheme.onSurface,
+                    ),
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        }
     }
 }
 
