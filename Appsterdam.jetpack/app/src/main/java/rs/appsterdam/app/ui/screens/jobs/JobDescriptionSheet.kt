@@ -3,9 +3,10 @@ package rs.appsterdam.app.ui.screens.jobs
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.jeziellago.compose.markdowntext.MarkdownText
@@ -33,7 +35,32 @@ fun JobDescriptionSheet(
         .background(color = MaterialTheme.colorScheme.tertiary),
 ) {
     JobSheetHeader(job, onClose)
-    JobSheetContent(job)
+    JobSheetContent(
+        job = job,
+        modifier = Modifier.weight(1f)
+    )
+
+    // Apply Button always visible at the bottom
+    val uriHandler = LocalUriHandler.current
+    job.jobUrl?.let { url ->
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, bottom = 24.dp)
+        ) {
+            Button(
+                onClick = { uriHandler.openUri(url) },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                )
+            ) {
+                Text("Apply for this job")
+            }
+        }
+    }
 }
 
 @Composable
@@ -69,8 +96,11 @@ fun JobSheetHeader(
 }
 
 @Composable
-fun JobSheetContent(job: Jobs) = LazyColumn(
-    modifier = Modifier.fillMaxWidth(),
+fun JobSheetContent(
+    job: Jobs,
+    modifier: Modifier = Modifier
+) = LazyColumn(
+    modifier = modifier.fillMaxWidth(),
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     item {
@@ -85,13 +115,7 @@ fun JobSheetContent(job: Jobs) = LazyColumn(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "\uD83D\uDCCD ${job.JobCity}",
-                    style = Typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.secondary
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = "\uD83C\uDFE0 ${job.JobProvider}",
-                    style = Typography.bodyLarge,
+                    style = Typography.bodyMedium,
                     color = MaterialTheme.colorScheme.secondary
                 )
             }
@@ -107,22 +131,6 @@ fun JobSheetContent(job: Jobs) = LazyColumn(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Apply Button
-            val uriHandler = LocalUriHandler.current
-            job.jobUrl?.let { url ->
-                Button(
-                    onClick = { uriHandler.openUri(url) },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.secondary,
-                        contentColor = MaterialTheme.colorScheme.onSecondary
-                    )
-                ) {
-                    Text("Apply for this job")
-                }
-            }
-
             Spacer(modifier = Modifier.height(24.dp))
 
             // Description
@@ -132,10 +140,12 @@ fun JobSheetContent(job: Jobs) = LazyColumn(
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(modifier = Modifier.height(8.dp))
-            
-            JobBioMarkdown(job.JobDescription ?: job.JobShortDescription ?: "No description provided.")
-            
-            Spacer(modifier = Modifier.height(32.dp))
+
+            JobBioMarkdown(
+                job.JobDescription ?: job.JobShortDescription ?: "No description provided."
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
@@ -149,10 +159,69 @@ fun JobBioMarkdown(bio: String) = Box(
 ) {
     MarkdownText(
         markdown = bio.replace("\n", "\n\n"),
-        style = LocalTextStyle.current.copy(
+        style = androidx.compose.ui.text.TextStyle(
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onPrimary
         ),
         modifier = Modifier.fillMaxWidth()
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun JobDescriptionSheetPreview() {
+    val sampleJob = Jobs(
+        jobID = "1",
+        jobUrl = "https://appsterdam.rs",
+        JobTitle = "Senior Android Developer",
+        JobShortDescription = "Join our team to build amazing Android apps using Jetpack Compose.",
+        JobDescription = """
+            # About the Role
+            We are looking for a Senior Android Developer to join our team. You will be responsible for developing new features and maintaining existing ones.
+            
+            ## Requirements
+            - 5+ years of experience in Android development
+            - Strong knowledge of Kotlin and Jetpack Compose
+            - Experience with Clean Architecture and MVVM
+            
+            ## What we offer
+            - Competitive salary
+            - Flexible working hours
+            - Remote work options
+        """.trimIndent(),
+        JobPublishStartDate = "2023-01-01",
+        JobPublishEndDate = "2023-12-31",
+        JobProvider = "Appsterdam.RS",
+        JobCity = "Amsterdam, Noord-Holland, The Netherlands"
+    )
+
+    rs.appsterdam.app.ui.theme.AppsterdamTheme {
+        JobDescriptionSheet(
+            job = sampleJob,
+            onClose = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun JobDescriptionSheetDarkPreview() {
+    val sampleJob = Jobs(
+        jobID = "1",
+        jobUrl = "https://appsterdam.rs",
+        JobTitle = "Senior Android Developer",
+        JobShortDescription = "Join our team to build amazing Android apps using Jetpack Compose.",
+        JobDescription = "Full job description goes here.",
+        JobPublishStartDate = "2023-01-01",
+        JobPublishEndDate = "2023-12-31",
+        JobProvider = "Appsterdam.RS",
+        JobCity = "Amsterdam, Noord-Holland, The Netherlands"
+    )
+
+    rs.appsterdam.app.ui.theme.AppsterdamTheme(darkTheme = true) {
+        JobDescriptionSheet(
+            job = sampleJob,
+            onClose = {}
+        )
+    }
 }
