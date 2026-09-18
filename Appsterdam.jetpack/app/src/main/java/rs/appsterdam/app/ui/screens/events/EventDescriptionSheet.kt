@@ -33,6 +33,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import android.annotation.SuppressLint
 
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun EventDescriptionSheet(
@@ -44,7 +47,42 @@ fun EventDescriptionSheet(
         .background(color = MaterialTheme.colorScheme.tertiary),
 ) {
     EventSheetHeader(event, onClose)
-    EventSheetContent(event)
+    EventSheetContent(
+        event = event,
+        modifier = Modifier.weight(1f)
+    )
+
+    // Attend Button always visible at the bottom
+    val context = LocalContext.current
+    event.id?.let { eventId ->
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, bottom = 24.dp)
+        ) {
+            Button(
+                onClick = {
+                    val urlStr = "Appsterdam/events/$eventId/"
+                    val deeplinkIntent = Intent(Intent.ACTION_VIEW, "meetup://$urlStr".toUri())
+                    val webIntent = Intent(Intent.ACTION_VIEW, "https://www.meetup.com/$urlStr".toUri())
+                    
+                    try {
+                        context.startActivity(deeplinkIntent)
+                    } catch (_: Exception) {
+                        context.startActivity(webIntent)
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                )
+            ) {
+                Text("Attend")
+            }
+        }
+    }
 }
 
 @Composable
@@ -83,8 +121,11 @@ fun EventSheetHeader(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun EventSheetContent(event: Event) = LazyColumn(
-    modifier = Modifier.fillMaxWidth(),
+fun EventSheetContent(
+    event: Event,
+    modifier: Modifier = Modifier
+) = LazyColumn(
+    modifier = modifier.fillMaxWidth(),
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     item {
@@ -190,6 +231,7 @@ fun EventSheetContent(event: Event) = LazyColumn(
             BioMarkdown(event.description ?: "No description provided.")
             
             Spacer(modifier = Modifier.height(32.dp))
+
         }
     }
 }
